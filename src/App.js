@@ -1,12 +1,11 @@
-const Pet = (props) => {
-  const { name, animal, breed } = props;
+import React from "react";
+import { render } from "react-dom";
 
-  return React.createElement("div", {}, [
-    React.createElement("h1", {}, `${name}`),
-    React.createElement("h2", {}, `${animal}`),
-    React.createElement("h2", {}, `${breed}`),
-  ]);
-};
+import { Pet } from "./Pet";
+/*
+ * Nothing to tree shake in react package
+ * In theory, only include code we use so better not to import everything
+ */
 
 /* App is parent component of Pet. Data flow is from parent to Pet
  *  Data does not flow from child to Parent
@@ -14,7 +13,7 @@ const Pet = (props) => {
  *  We can use context if data needs to be shared
  */
 
-const App = () => {
+export const App = () => {
   return React.createElement("div", {}, [
     React.createElement("h1", {}, "Adopt Me!"),
     React.createElement(Pet, {
@@ -35,4 +34,4 @@ const App = () => {
   ]);
 };
 
-ReactDOM.render(React.createElement(App), document.getElementById("root"));
+render(React.createElement(App), document.getElementById("root"));
