@@ -1,7 +1,8 @@
-import React from "react";
 import { render } from "react-dom";
 
-import { Pet } from "./Pet";
+import Pet from "./Pet";
+import { SearchParams } from "./SearchParams";
+
 /*
  * Nothing to tree shake in react package
  * In theory, only include code we use so better not to import everything
@@ -14,24 +15,12 @@ import { Pet } from "./Pet";
  */
 
 export const App = () => {
-  return React.createElement("div", {}, [
-    React.createElement("h1", {}, "Adopt Me!"),
-    React.createElement(Pet, {
-      name: "Luna",
-      animal: "Dog",
-      breed: "Havanese",
-    }),
-    React.createElement(Pet, {
-      name: "Pepper",
-      animal: "Bird",
-      breed: "Cockatiel",
-    }),
-    React.createElement(Pet, {
-      name: "Doink",
-      animal: "Cat",
-      breed: "Mix",
-    }),
-  ]);
+  return (
+    <div id="main-app">
+      <h1>Adopt Me!</h1>
+      <SearchParams />
+    </div>
+  );
 };
 
-render(React.createElement(App), document.getElementById("root"));
+render(<App />, document.getElementById("root"));

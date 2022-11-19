@@ -21,3 +21,7 @@ Browers don't understand lot of new modern JS we write. So we need some tool whi
 # Browserslist in package.json
 
 We are telling parcel which browser's we are targetting. Parcel will bundle code according to the browser's we want our app to be supported.
+
+# React Hooks
+
+Hooks are used to add statefullness to our UI
