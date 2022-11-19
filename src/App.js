@@ -1,6 +1,6 @@
 import { render } from "react-dom";
+import { StrictMode } from "react";
 
-import Pet from "./Pet";
 import { SearchParams } from "./SearchParams";
 
 /*
@@ -16,10 +16,12 @@ import { SearchParams } from "./SearchParams";
 
 export const App = () => {
   return (
-    <div id="main-app">
-      <h1>Adopt Me!</h1>
-      <SearchParams />
-    </div>
+    <StrictMode>
+      <div id="main-app">
+        <h1>Adopt Me!</h1>
+        <SearchParams />
+      </div>
+    </StrictMode>
   );
 };
 
