@@ -1,6 +1,6 @@
 # Adopt-Me
 
-Intro-To-React-Course-V7 sample application
+Sample react app created as part of Intro-To-React-Course by FrontEnd Masters
 
 # Build tools
 
