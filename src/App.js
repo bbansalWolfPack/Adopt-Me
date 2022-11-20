@@ -3,7 +3,7 @@ import { StrictMode } from "react";
 
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { SearchParams } from "./SearchParams";
-import { Details } from "./Details";
+import WrappedDetails from "./Details";
 
 /*
  * Nothing to tree shake in react package
@@ -25,7 +25,7 @@ export const App = () => {
         </header>
 
         <Routes>
-          <Route path="/details/:id" element={<Details />} />
+          <Route path="/details/:id" element={<WrappedDetails />} />
           <Route path="/" element={<SearchParams />} />
         </Routes>
       </BrowserRouter>
