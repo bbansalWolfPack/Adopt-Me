@@ -25,3 +25,7 @@ We are telling parcel which browser's we are targetting. Parcel will bundle code
 # React Hooks
 
 Hooks are used to add statefullness to our UI
+
+# React Routers
+
+Very useful for Single page applications where within client, user routes to different pages without asking server to load new pages. React router also takes care of accessibility challenges within Single page applications (SPA)
