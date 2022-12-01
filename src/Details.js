@@ -1,26 +1,20 @@
 import { Component } from "react";
 import { useParams } from "react-router-dom";
-
 import Carousel from "./Carousel";
-// showing an example of class based component. But mostly we use functional components
+import ErrorBoundary from "./ErrorBoundary";
 
 class Details extends Component {
   state = { loading: true };
 
-  // componentDidMount is similar to [useEffect(() => {}, [])]
   async componentDidMount() {
-    try {
-      const res = await fetch(
-        `http://pets-v2.dev-apis.com/pets?id=${this.props.id}`
-      );
-      const json = await res.json();
-      this.setState({ loading: false, ...json.pets[0] });
-    } catch (error) {
-      console.log(error);
-    } finally {
-      this.setState({ loading: false });
-    }
+    const res = await fetch(
+      `http://pets-v2.dev-apis.com/pets?id=${this.props.params.id}`
+    );
+    const json = await res.json();
+    this.setState(Object.assign({ loading: false }, json.pets[0]));
   }
+
+  async componentWillUnmount() {}
 
   render() {
     if (this.state.loading) {
@@ -32,7 +26,7 @@ class Details extends Component {
 
     return (
       <div className="details">
-        <Carousel images={images} />;
+        <Carousel images={images} />
         <div>
           <h1>{name}</h1>
           <h2>{`${animal} — ${breed} — ${city}, ${state}`}</h2>
@@ -45,8 +39,12 @@ class Details extends Component {
 }
 
 const WrappedDetails = () => {
-  const { id } = useParams();
-  return <Details id={id} />;
+  const params = useParams();
+  return (
+    <ErrorBoundary>
+      <Details params={params} />
+    </ErrorBoundary>
+  );
 };
 
 export default WrappedDetails;
