@@ -14,12 +14,12 @@ class Details extends Component {
     this.setState(Object.assign({ loading: false }, json.pets[0]));
   }
 
-  async componentWillUnmount() {}
-
   render() {
     if (this.state.loading) {
       return <h2>loading … </h2>;
     }
+
+    throw new Error("Lmao");
 
     const { animal, breed, city, state, description, name, images } =
       this.state;
