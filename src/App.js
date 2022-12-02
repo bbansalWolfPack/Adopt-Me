@@ -1,9 +1,10 @@
 import { render } from "react-dom";
-import { StrictMode } from "react";
+import { StrictMode, useState } from "react";
 
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { SearchParams } from "./SearchParams";
 import WrappedDetails from "./Details";
+import ThemeContext from "./ThemeContext";
 
 /*
  * Nothing to tree shake in react package
@@ -17,18 +18,25 @@ import WrappedDetails from "./Details";
  */
 
 export const App = () => {
+  // using context to avoid prop drilling
+  // context is better than redux, redux is good but context has everything and better what redux offers
+
+  const theme = useState("darkblue");
+
   return (
     <StrictMode>
-      <BrowserRouter>
-        <header>
-          <Link to="/">Adopt Me!</Link>
-        </header>
+      <ThemeContext.Provider value={theme}>
+        <BrowserRouter>
+          <header>
+            <Link to="/">Adopt Me!</Link>
+          </header>
 
-        <Routes>
-          <Route path="/details/:id" element={<WrappedDetails />} />
-          <Route path="/" element={<SearchParams />} />
-        </Routes>
-      </BrowserRouter>
+          <Routes>
+            <Route path="/details/:id" element={<WrappedDetails />} />
+            <Route path="/" element={<SearchParams />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeContext.Provider>
     </StrictMode>
   );
 };

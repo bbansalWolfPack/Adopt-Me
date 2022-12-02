@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import { Results } from "./Results";
+import ThemeContext from "./ThemeContext";
 
 import { useBreedList } from "./useBreedList";
 
@@ -35,6 +36,8 @@ export const SearchParams = () => {
     event.preventDefault();
     requestPets();
   };
+
+  const [theme, setTheme] = useContext(ThemeContext);
 
   return (
     <div className="search-params">
@@ -89,7 +92,20 @@ export const SearchParams = () => {
             ))}
           </select>
         </label>
-        <button>Find Pets</button>
+        <label htmlFor="theme">
+          Theme
+          <select
+            value={theme}
+            onChange={(e) => setTheme(e.target.value)}
+            onBlur={(e) => setTheme(e.target.value)}
+          >
+            <option value="peru">Peru</option>
+            <option value="darkblue">Dark Blue</option>
+            <option value="chartreuse">Chartreuse</option>
+            <option value="mediumorchid">MediumOrchid</option>
+          </select>
+        </label>
+        <button style={{ backgroundColor: theme }}>Find Pets</button>
       </form>
 
       <Results pets={pets} />
